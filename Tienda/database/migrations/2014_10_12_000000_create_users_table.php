@@ -17,7 +17,6 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->string('password_confirmation');
             $table->unsignedBigInteger('role_id');//id del rol
             $table->foreign('role_id')->references('id')->on('roles');//referencia a la tabla de rol e id
             $table->string('city')->nullable();
@@ -26,6 +25,7 @@ return new class extends Migration
             $table->string('phone', 20)->nullable();
             $table->string('avatar')->nullable();// foto de perfil
             $table->softDeletes();// marcará a un usuario como eliminado sin eliminarlo realmente
+            $table->string('api_token', 64)->nullable()->unique(); // Campo para el token
             $table->rememberToken();
             $table->timestamps();
         });
